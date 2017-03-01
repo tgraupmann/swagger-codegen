@@ -6,19 +6,19 @@ SET OUT_DIR=%CD%
 SET SW_DIR=%CD%\..\..
 
 SET OUT_NAME=arena_client
-SET OUT_URL=https://client.staging.arena.razerzone.com/swagger/docs/v1
+SET OUT_URL=https://client.arena.razerzone.com/swagger/docs/v1
 call:genFunc
 
 SET OUT_NAME=arena_control
-SET OUT_URL=https://control.staging.arena.razerzone.com/swagger/docs/v1
+SET OUT_URL=https://control.arena.razerzone.com/swagger/docs/v1
 call:genFunc
 
 SET OUT_NAME=arena_game_server
-SET OUT_URL=https://gameserver.staging.arena.razerzone.com/swagger/docs/v1
+SET OUT_URL=https://gameserver.arena.razerzone.com/swagger/docs/v1
 call:genFunc
 
 SET OUT_NAME=arena_polling
-SET OUT_URL=https://polling.staging.arena.razerzone.com/swagger/docs/v1
+SET OUT_URL=https://polling.arena.razerzone.com/swagger/docs/v1
 call:genFunc
 
 ECHO JAVA Clients Generated [DONE]
