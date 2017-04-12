@@ -1,5 +1,7 @@
 @ECHO OFF
 
+SET PATH=%PATH%;c:\cygwin64\bin
+
 CALL clean.cmd
 
 ECHO Generating JAVA Clients...
