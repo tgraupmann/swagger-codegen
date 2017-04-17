@@ -25,7 +25,7 @@ open class StoreAPI: APIBase {
 
     /**
      Delete purchase order by ID
-     - DELETE /store/order/{orderId}
+     - DELETE /store/order/{order_id}
      - For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors
      
      - parameter orderId: (path) ID of the order that needs to be deleted 
@@ -33,8 +33,8 @@ open class StoreAPI: APIBase {
      - returns: RequestBuilder<Void> 
      */
     open class func deleteOrderWithRequestBuilder(orderId: String) -> RequestBuilder<Void> {
-        var path = "/store/order/{orderId}"
-        path = path.replacingOccurrences(of: "{orderId}", with: "\(orderId)", options: .literal, range: nil)
+        var path = "/store/order/{order_id}"
+        path = path.replacingOccurrences(of: "{order_id}", with: "\(orderId)", options: .literal, range: nil)
         let URLString = PetstoreClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
@@ -65,9 +65,9 @@ open class StoreAPI: APIBase {
      - API Key:
        - type: apiKey api_key 
        - name: api_key
-     - examples: [{contentType=application/json, example={
-  "key" : 123
-}}]
+     - examples: [{example={
+  "key" : 0
+}, contentType=application/json}]
 
      - returns: RequestBuilder<[String:Int32]> 
      */
@@ -99,46 +99,46 @@ open class StoreAPI: APIBase {
 
     /**
      Find purchase order by ID
-     - GET /store/order/{orderId}
+     - GET /store/order/{order_id}
      - For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions
-     - examples: [{contentType=application/xml, example=<Order>
-  <id>123456</id>
-  <petId>123456</petId>
-  <quantity>0</quantity>
+     - examples: [{example=<Order>
+  <id>123456789</id>
+  <petId>123456789</petId>
+  <quantity>123</quantity>
   <shipDate>2000-01-23T04:56:07.000Z</shipDate>
-  <status>string</status>
+  <status>aeiou</status>
   <complete>true</complete>
-</Order>}, {contentType=application/json, example={
-  "petId" : 123456789,
-  "quantity" : 123,
-  "id" : 123456789,
-  "shipDate" : "2000-01-23T04:56:07.000+00:00",
-  "complete" : true,
-  "status" : "aeiou"
-}}]
-     - examples: [{contentType=application/xml, example=<Order>
-  <id>123456</id>
-  <petId>123456</petId>
-  <quantity>0</quantity>
+</Order>, contentType=application/xml}, {example={
+  "id" : 0,
+  "petId" : 6,
+  "complete" : false,
+  "status" : "placed",
+  "quantity" : 1,
+  "shipDate" : "2000-01-23T04:56:07.000+00:00"
+}, contentType=application/json}]
+     - examples: [{example=<Order>
+  <id>123456789</id>
+  <petId>123456789</petId>
+  <quantity>123</quantity>
   <shipDate>2000-01-23T04:56:07.000Z</shipDate>
-  <status>string</status>
+  <status>aeiou</status>
   <complete>true</complete>
-</Order>}, {contentType=application/json, example={
-  "petId" : 123456789,
-  "quantity" : 123,
-  "id" : 123456789,
-  "shipDate" : "2000-01-23T04:56:07.000+00:00",
-  "complete" : true,
-  "status" : "aeiou"
-}}]
+</Order>, contentType=application/xml}, {example={
+  "id" : 0,
+  "petId" : 6,
+  "complete" : false,
+  "status" : "placed",
+  "quantity" : 1,
+  "shipDate" : "2000-01-23T04:56:07.000+00:00"
+}, contentType=application/json}]
      
      - parameter orderId: (path) ID of pet that needs to be fetched 
 
      - returns: RequestBuilder<Order> 
      */
     open class func getOrderByIdWithRequestBuilder(orderId: Int64) -> RequestBuilder<Order> {
-        var path = "/store/order/{orderId}"
-        path = path.replacingOccurrences(of: "{orderId}", with: "\(orderId)", options: .literal, range: nil)
+        var path = "/store/order/{order_id}"
+        path = path.replacingOccurrences(of: "{order_id}", with: "\(orderId)", options: .literal, range: nil)
         let URLString = PetstoreClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
@@ -167,36 +167,36 @@ open class StoreAPI: APIBase {
      Place an order for a pet
      - POST /store/order
      - 
-     - examples: [{contentType=application/xml, example=<Order>
-  <id>123456</id>
-  <petId>123456</petId>
-  <quantity>0</quantity>
+     - examples: [{example=<Order>
+  <id>123456789</id>
+  <petId>123456789</petId>
+  <quantity>123</quantity>
   <shipDate>2000-01-23T04:56:07.000Z</shipDate>
-  <status>string</status>
+  <status>aeiou</status>
   <complete>true</complete>
-</Order>}, {contentType=application/json, example={
-  "petId" : 123456789,
-  "quantity" : 123,
-  "id" : 123456789,
-  "shipDate" : "2000-01-23T04:56:07.000+00:00",
-  "complete" : true,
-  "status" : "aeiou"
-}}]
-     - examples: [{contentType=application/xml, example=<Order>
-  <id>123456</id>
-  <petId>123456</petId>
-  <quantity>0</quantity>
+</Order>, contentType=application/xml}, {example={
+  "id" : 0,
+  "petId" : 6,
+  "complete" : false,
+  "status" : "placed",
+  "quantity" : 1,
+  "shipDate" : "2000-01-23T04:56:07.000+00:00"
+}, contentType=application/json}]
+     - examples: [{example=<Order>
+  <id>123456789</id>
+  <petId>123456789</petId>
+  <quantity>123</quantity>
   <shipDate>2000-01-23T04:56:07.000Z</shipDate>
-  <status>string</status>
+  <status>aeiou</status>
   <complete>true</complete>
-</Order>}, {contentType=application/json, example={
-  "petId" : 123456789,
-  "quantity" : 123,
-  "id" : 123456789,
-  "shipDate" : "2000-01-23T04:56:07.000+00:00",
-  "complete" : true,
-  "status" : "aeiou"
-}}]
+</Order>, contentType=application/xml}, {example={
+  "id" : 0,
+  "petId" : 6,
+  "complete" : false,
+  "status" : "placed",
+  "quantity" : 1,
+  "shipDate" : "2000-01-23T04:56:07.000+00:00"
+}, contentType=application/json}]
      
      - parameter body: (body) order placed for purchasing the pet 
 

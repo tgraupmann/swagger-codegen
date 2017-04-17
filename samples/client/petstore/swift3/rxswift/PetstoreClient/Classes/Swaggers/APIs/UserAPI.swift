@@ -264,44 +264,44 @@ open class UserAPI: APIBase {
      Get user by user name
      - GET /user/{username}
      - 
-     - examples: [{contentType=application/xml, example=<User>
-  <id>123456</id>
-  <username>string</username>
-  <firstName>string</firstName>
-  <lastName>string</lastName>
-  <email>string</email>
-  <password>string</password>
-  <phone>string</phone>
-  <userStatus>0</userStatus>
-</User>}, {contentType=application/json, example={
-  "firstName" : "aeiou",
+     - examples: [{example=<User>
+  <id>123456789</id>
+  <username>aeiou</username>
+  <firstName>aeiou</firstName>
+  <lastName>aeiou</lastName>
+  <email>aeiou</email>
+  <password>aeiou</password>
+  <phone>aeiou</phone>
+  <userStatus>123</userStatus>
+</User>, contentType=application/xml}, {example={
+  "id" : 0,
   "lastName" : "aeiou",
-  "password" : "aeiou",
-  "userStatus" : 123,
   "phone" : "aeiou",
-  "id" : 123456789,
+  "username" : "aeiou",
   "email" : "aeiou",
-  "username" : "aeiou"
-}}]
-     - examples: [{contentType=application/xml, example=<User>
-  <id>123456</id>
-  <username>string</username>
-  <firstName>string</firstName>
-  <lastName>string</lastName>
-  <email>string</email>
-  <password>string</password>
-  <phone>string</phone>
-  <userStatus>0</userStatus>
-</User>}, {contentType=application/json, example={
+  "userStatus" : 6,
   "firstName" : "aeiou",
+  "password" : "aeiou"
+}, contentType=application/json}]
+     - examples: [{example=<User>
+  <id>123456789</id>
+  <username>aeiou</username>
+  <firstName>aeiou</firstName>
+  <lastName>aeiou</lastName>
+  <email>aeiou</email>
+  <password>aeiou</password>
+  <phone>aeiou</phone>
+  <userStatus>123</userStatus>
+</User>, contentType=application/xml}, {example={
+  "id" : 0,
   "lastName" : "aeiou",
-  "password" : "aeiou",
-  "userStatus" : 123,
   "phone" : "aeiou",
-  "id" : 123456789,
+  "username" : "aeiou",
   "email" : "aeiou",
-  "username" : "aeiou"
-}}]
+  "userStatus" : 6,
+  "firstName" : "aeiou",
+  "password" : "aeiou"
+}, contentType=application/json}]
      
      - parameter username: (path) The name that needs to be fetched. Use user1 for testing.  
 
@@ -361,8 +361,8 @@ open class UserAPI: APIBase {
      - 
      - responseHeaders: [X-Rate-Limit(Int32), X-Expires-After(Date)]
      - responseHeaders: [X-Rate-Limit(Int32), X-Expires-After(Date)]
-     - examples: [{contentType=application/xml, example=string}, {contentType=application/json, example="aeiou"}]
-     - examples: [{contentType=application/xml, example=string}, {contentType=application/json, example="aeiou"}]
+     - examples: [{example=aeiou, contentType=application/xml}, {example="aeiou", contentType=application/json}]
+     - examples: [{example=aeiou, contentType=application/xml}, {example="aeiou", contentType=application/json}]
      
      - parameter username: (query) The user name for login 
      - parameter password: (query) The password for login in clear text 
