@@ -63,10 +63,6 @@ public class {{classname}} {
     }
 
     {{#operation}}
-<<<<<<< HEAD
-    /* Build call for {{operationId}} */
-    private okhttp3.Call {{operationId}}Call({{#allParams}}{{{dataType}}} {{paramName}}, {{/allParams}}final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-=======
     /**
      * Build call for {{operationId}}{{#allParams}}
      * @param {{paramName}} {{description}}{{#required}} (required){{/required}}{{^required}} (optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{/allParams}}
@@ -75,8 +71,7 @@ public class {{classname}} {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call {{operationId}}Call({{#allParams}}{{{dataType}}} {{paramName}}, {{/allParams}}final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
->>>>>>> b1a39ac820fa1e3920b1ff826797f6fd354921fe
+    public okhttp3.Call {{operationId}}Call({{#allParams}}{{{dataType}}} {{paramName}}, {{/allParams}}final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object {{localVariablePrefix}}localVarPostBody = {{#bodyParam}}{{paramName}}{{/bodyParam}}{{^bodyParam}}null{{/bodyParam}};
         
         // create path and map variables
