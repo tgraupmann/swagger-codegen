@@ -39,6 +39,6 @@ ECHO Generating (%OUT_NAME%)...
 CD "%OUT_DIR%"
 REM PAUSE
 cd "%SW_DIR%"
-CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i "%OUT_URL%" -l java -o "%OUT_DIR%\%OUT_NAME%" --api-package %PACKAGE% --model-package %PACKAGE%.model
+CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i "%OUT_URL%" -l java -o "%OUT_DIR%\%OUT_NAME%" --api-package %PACKAGE% --model-package %PACKAGE%.model -DhideGenerationTimestamp=true
 ECHO Generated (%OUT_NAME%) [DONE]
 GOTO:eof
