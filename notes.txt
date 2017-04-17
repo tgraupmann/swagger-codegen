@@ -1,0 +1,15 @@
+To keep this fork updated with the master repository.
+
+Reference: https://gist.github.com/CristinaSolana/1885435
+
+1 Add a remote called `upstream` pointed at https://github.com/swagger-api/swagger-codegen
+
+2 Fetch from `upstream` on the command-line:
+
+git fetch upstream
+
+3 Pull from the remote `upstream` master branch
+
+4 Push to the remote `origin` master branch
+
+Done!
