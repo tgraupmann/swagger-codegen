@@ -149,3 +149,5 @@ samples/client/petstore/typescript-node/npm/npm-debug.log
 # aspnetcore
 samples/server/petstore/aspnetcore/.vs/
 
+samples/chromasdk/chromasdk_CsharpDotNet2/
+samples/chromasdk/chromasdk_csharp/
