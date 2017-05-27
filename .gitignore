@@ -151,3 +151,4 @@ samples/server/petstore/aspnetcore/.vs/
 
 samples/chromasdk/chromasdk_CsharpDotNet2/
 samples/chromasdk/chromasdk_csharp/
+modules/swagger-codegen/src/main/resources/csharp_original/

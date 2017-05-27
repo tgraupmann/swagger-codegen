@@ -291,16 +291,12 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         binRelativePath += "vendor";
         additionalProperties.put("binRelativePath", binRelativePath);
 
-        supportingFiles.add(new SupportingFile("IApiAccessor.mustache",
-                clientPackageDir, "IApiAccessor.cs"));
         supportingFiles.add(new SupportingFile("Configuration.mustache",
                 clientPackageDir, "Configuration.cs"));
         supportingFiles.add(new SupportingFile("ApiClient.mustache",
                 clientPackageDir, "ApiClient.cs"));
         supportingFiles.add(new SupportingFile("ApiException.mustache",
                 clientPackageDir, "ApiException.cs"));
-        supportingFiles.add(new SupportingFile("ApiResponse.mustache",
-                clientPackageDir, "ApiResponse.cs"));
         supportingFiles.add(new SupportingFile("ExceptionFactory.mustache",
                 clientPackageDir, "ExceptionFactory.cs"));
         if(Boolean.FALSE.equals(this.netStandard)) {
@@ -541,7 +537,8 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
             "double?".equalsIgnoreCase(datatype) || "float?".equalsIgnoreCase(datatype)) {
             return value;
         } else {
-            return "\"" + escapeText(value) + "\"";
+            //return "\"" + escapeText(value) + "\"";
+			return value;
         }
     }
 

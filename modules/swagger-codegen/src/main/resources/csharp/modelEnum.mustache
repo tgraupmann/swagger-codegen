@@ -7,9 +7,9 @@
     {
         {{#allowableValues}}{{#enumVars}}
         /// <summary>
-        /// Enum {{name}} for {{{value}}}
+        /// Enum {{value}}
         /// </summary>
-        [EnumMember(Value = {{#isInteger}}"{{/isInteger}}{{#isDouble}}"{{/isDouble}}{{{value}}}{{#isInteger}}"{{/isInteger}}{{#isDouble}}"{{/isDouble}})]
-        {{name}}{{#isInteger}} = {{{value}}}{{/isInteger}}{{^-last}},
+        [EnumMember(Value = {{#isInteger}}"{{/isInteger}}{{#isDouble}}"{{/isDouble}}"{{value}}"{{#isInteger}}"{{/isInteger}}{{#isDouble}}"{{/isDouble}})]
+        {{value}}{{#isInteger}} = {{{value}}}{{/isInteger}}{{^-last}},
         {{/-last}}{{/enumVars}}{{/allowableValues}}
     }
