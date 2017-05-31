@@ -32,6 +32,17 @@ SET MODEL=%PACKAGE%.Model
 call:genFunc
 
 
+REM Generate Razer endpoint
+
+SET OUT_GEN=csharp
+SET OUT_NAME=razer_%OUT_GEN%
+SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger_razer.yaml
+SET PACKAGE=RazerPackage
+SET NAMESPACE=RazerSDK
+SET MODEL=%PACKAGE%.Model
+call:genFunc
+
+
 REM SET OUT_GEN=CsharpDotNet2
 REM SET OUT_NAME=chromasdk_%OUT_GEN%
 REM SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger.yaml
