@@ -43,6 +43,15 @@ SET MODEL=%PACKAGE%.Model
 call:genFunc
 
 
+SET OUT_GEN=csharp
+SET OUT_NAME=razer_delete_%OUT_GEN%
+SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger_delete.yaml
+SET PACKAGE=RazerDeletePackage
+SET NAMESPACE=RazerSDKDelete
+SET MODEL=%PACKAGE%.Model
+call:genFunc
+
+
 REM SET OUT_GEN=CsharpDotNet2
 REM SET OUT_NAME=chromasdk_%OUT_GEN%
 REM SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger.yaml

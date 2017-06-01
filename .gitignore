@@ -154,3 +154,4 @@ samples/chromasdk/chromasdk_csharp/
 modules/swagger-codegen/src/main/resources/csharp_original/
 samples/chromasdk/custom_chromasdk_csharp/
 samples/chromasdk/razer_csharp/
+samples/chromasdk/razer_delete_csharp/
