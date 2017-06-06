@@ -34,6 +34,9 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
     private static final String NETSTANDARD = "v5.0";
     private static final String UWP = "uwp";
     private static final String DATA_TYPE_WITH_ENUM_EXTENSION = "plainDatatypeWithEnum";
+	
+	private static final String API_LEVEL = "apiLevel";
+	private static final String API_LEVEL_DESC = "API level is appended to the client class name";
 
     protected String packageGuid = "{" + java.util.UUID.randomUUID().toString().toUpperCase() + "}";
     protected String clientPackage = "IO.Swagger.Client";
@@ -49,17 +52,13 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
     protected boolean generatePropertyChanged = Boolean.FALSE;
     protected Map<Character, String> regexModifiers;
     protected final Map<String, String> frameworks;
+	protected String apiLevel = "";
 
     // By default, generated code is considered public
     protected boolean nonPublicApi = Boolean.FALSE;
 
     public CSharpClientCodegen() {
         super();
-        modelTemplateFiles.put("model.mustache", ".cs");
-        apiTemplateFiles.put("api.mustache", ".cs");
-
-        modelDocTemplateFiles.put("model_doc.mustache", ".md");
-        apiDocTemplateFiles.put("api_doc.mustache", ".md");
 
         cliOptions.clear();
 
@@ -83,6 +82,14 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         addOption(CodegenConstants.INTERFACE_PREFIX,
                 CodegenConstants.INTERFACE_PREFIX_DESC,
                 interfacePrefix);
+				
+        addOption(API_LEVEL,
+                API_LEVEL_DESC,
+                null);
+				
+        addOption(CodegenConstants.EXCLUDE_TESTS,
+                CodegenConstants.EXCLUDE_TESTS_DESC,
+                null);
 
         CliOption framework = new CliOption(
                 CodegenConstants.DOTNET_FRAMEWORK,
@@ -156,6 +163,12 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         regexModifiers.put('m', "Multiline");
         regexModifiers.put('s', "Singleline");
         regexModifiers.put('x', "IgnorePatternWhitespace");
+		
+        modelTemplateFiles.put("model.mustache", ".cs");
+        apiTemplateFiles.put("api.mustache", ".cs");
+
+        modelDocTemplateFiles.put("model_doc.mustache", ".md");
+        apiDocTemplateFiles.put("api_doc.mustache", ".md");
     }
 
     @Override
@@ -190,6 +203,16 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         additionalProperties.put("clientPackage", clientPackage);
 
         additionalProperties.put("emitDefaultValue", optionalEmitDefaultValue);
+		
+		if (additionalProperties.containsKey(API_LEVEL)) {
+			LOGGER.info("***** apiLevel was found");
+			apiLevel = additionalProperties.get(API_LEVEL).toString();
+			if (apiLevel == null) {
+				LOGGER.info("***** apiLevel was null!");
+				apiLevel = "";
+			}
+			LOGGER.info("***** apiLevel=" + apiLevel);
+		}
 
         if (additionalProperties.containsKey(CodegenConstants.DOTNET_FRAMEWORK)) {
             setTargetFramework((String) additionalProperties.get(CodegenConstants.DOTNET_FRAMEWORK));
@@ -274,7 +297,7 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         if (additionalProperties.containsKey(CodegenConstants.NON_PUBLIC_API)) {
             setNonPublicApi(Boolean.valueOf(additionalProperties.get(CodegenConstants.NON_PUBLIC_API).toString()));
         }
-
+		
         final String testPackageName = testPackageName();
         String packageFolder = sourceFolder + File.separator + packageName;
         String clientPackageDir = packageFolder + File.separator + clientPackage;
@@ -292,13 +315,13 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         additionalProperties.put("binRelativePath", binRelativePath);
 
         supportingFiles.add(new SupportingFile("Configuration.mustache",
-                clientPackageDir, "Configuration.cs"));
+                clientPackageDir, "Configuration"+apiLevel+".cs"));
         supportingFiles.add(new SupportingFile("ApiClient.mustache",
-                clientPackageDir, "ApiClient.cs"));
+                clientPackageDir, "ApiClient"+apiLevel+".cs"));
         supportingFiles.add(new SupportingFile("ApiException.mustache",
-                clientPackageDir, "ApiException.cs"));
+                clientPackageDir, "ApiException"+apiLevel+".cs"));
         supportingFiles.add(new SupportingFile("ExceptionFactory.mustache",
-                clientPackageDir, "ExceptionFactory.cs"));
+                clientPackageDir, "ExceptionFactory"+apiLevel+".cs"));
         if(Boolean.FALSE.equals(this.netStandard)) {
             supportingFiles.add(new SupportingFile("compile.mustache", "", "build.bat"));
             supportingFiles.add(new SupportingFile("compile-mono.sh.mustache", "", "build.sh"));
@@ -389,6 +412,13 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
     public String getName() {
         return "csharp";
     }
+	
+	@Override
+    public String toApiName(String name) {
+        if(name.length() == 0)
+            return "DefaultApi" + apiLevel;
+        return initialCaps(name) + "Api" + apiLevel;
+    }
 
     @Override
     public String getHelp() {
@@ -473,7 +503,7 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
             vendorExtensions.put("x-modifiers", modifiers);
         }
     }
-
+	
     public void setTargetFramework(String dotnetFramework) {
         if(!frameworks.containsKey(dotnetFramework)){
             LOGGER.warn("Invalid .NET framework version, defaulting to " + this.targetFramework);
