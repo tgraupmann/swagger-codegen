@@ -18,6 +18,7 @@ SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition
 SET PACKAGE=ChromaPackage
 SET NAMESPACE=ChromaSDK
 SET MODEL=%PACKAGE%.Model
+SET APINAME=ChromaApi
 call:genFunc
 
 
@@ -41,6 +42,7 @@ SET PACKAGE=RazerPackage
 SET NAMESPACE=RazerSDK
 SET MODEL=%PACKAGE%.Model
 SET LEVEL=2
+SET APINAME=RazerApi
 call:genFunc
 
 
@@ -50,6 +52,7 @@ SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition
 SET PACKAGE=RazerDeletePackage
 SET NAMESPACE=RazerSDKDelete
 SET MODEL=%PACKAGE%.Model
+SET APINAME=RazerDeleteApi
 SET LEVEL=3
 call:genFunc
 
@@ -76,6 +79,6 @@ cd "%SW_DIR%"
 REM CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar help
 REM CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar config-help -l %OUT_GEN%
 REM CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i "%OUT_URL%" -l %OUT_GEN% -o "%OUT_DIR%\%OUT_NAME%" --api-package %PACKAGE% --model-package %MODEL% -DtargetFramework=v3.5
-CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i "%OUT_URL%" -l %OUT_GEN% -o "%OUT_DIR%\%OUT_NAME%" --api-package %PACKAGE% --model-package %MODEL% -DpackageName=%NAMESPACE%,optionalAssemblyInfo=false,apiLevel=%LEVEL%,excludeTests=true
+CALL java -jar modules\swagger-codegen-cli\target\swagger-codegen-cli.jar generate -i "%OUT_URL%" -l %OUT_GEN% -o "%OUT_DIR%\%OUT_NAME%" --api-package %PACKAGE% --model-package %MODEL% -DpackageName=%NAMESPACE%,optionalAssemblyInfo=false,apiLevel=%LEVEL%,apiName=%APINAME%,excludeTests=true
 ECHO Generated (%OUT_NAME%) [DONE]
 GOTO:eof

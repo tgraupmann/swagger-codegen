@@ -36,7 +36,10 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
     private static final String DATA_TYPE_WITH_ENUM_EXTENSION = "plainDatatypeWithEnum";
 	
 	private static final String API_LEVEL = "apiLevel";
-	private static final String API_LEVEL_DESC = "API level is appended to the client class name";
+	private static final String API_LEVEL_DESC = "API level is appended to the client file name";
+	
+	private static final String API_NAME = "apiName";
+	private static final String API_NAME_DESC = "API name replaces the default api name";
 
     protected String packageGuid = "{" + java.util.UUID.randomUUID().toString().toUpperCase() + "}";
     protected String clientPackage = "IO.Swagger.Client";
@@ -52,7 +55,9 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
     protected boolean generatePropertyChanged = Boolean.FALSE;
     protected Map<Character, String> regexModifiers;
     protected final Map<String, String> frameworks;
+	
 	protected String apiLevel = "";
+	protected String apiName = "";
 
     // By default, generated code is considered public
     protected boolean nonPublicApi = Boolean.FALSE;
@@ -85,6 +90,10 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
 				
         addOption(API_LEVEL,
                 API_LEVEL_DESC,
+                null);
+				
+		addOption(API_NAME,
+                API_NAME_DESC,
                 null);
 				
         addOption(CodegenConstants.EXCLUDE_TESTS,
@@ -205,13 +214,19 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
         additionalProperties.put("emitDefaultValue", optionalEmitDefaultValue);
 		
 		if (additionalProperties.containsKey(API_LEVEL)) {
-			LOGGER.info("***** apiLevel was found");
 			apiLevel = additionalProperties.get(API_LEVEL).toString();
 			if (apiLevel == null) {
-				LOGGER.info("***** apiLevel was null!");
 				apiLevel = "";
 			}
 			LOGGER.info("***** apiLevel=" + apiLevel);
+		}
+		
+		if (additionalProperties.containsKey(API_NAME)) {
+			apiName = additionalProperties.get(API_NAME).toString();
+			if (apiName == null) {
+				apiName = "";
+			}
+			LOGGER.info("***** apiName=" + apiName);
 		}
 
         if (additionalProperties.containsKey(CodegenConstants.DOTNET_FRAMEWORK)) {
@@ -415,9 +430,14 @@ public class CSharpClientCodegen extends AbstractCSharpCodegen {
 	
 	@Override
     public String toApiName(String name) {
-        if(name.length() == 0)
-            return "DefaultApi" + apiLevel;
-        return initialCaps(name) + "Api" + apiLevel;
+		if (null != apiName &&
+			!apiName.equals("")) {
+			return apiName;
+		}
+        if(name.length() == 0) {
+			return "DefaultApi";
+		}
+        return initialCaps(name) + "Api";
     }
 
     @Override
