@@ -107,7 +107,7 @@ namespace {{packageName}}.Api
             {{#formParams}}if ({{paramName}} != null) {{#isFile}}fileParams.Add("{{baseName}}", ApiClient.ParameterToFile("{{baseName}}", {{paramName}}));{{/isFile}}{{^isFile}}formParams.Add("{{baseName}}", ApiClient.ParameterToString({{paramName}})); // form parameter{{/isFile}}
             {{/formParams}}
             {{#bodyParam}}postBody = ApiClient.Serialize({{paramName}}); // http body (model) parameter
-			UnityEngine.Debug.Log(postBody);
+			//UnityEngine.Debug.Log(postBody);
             {{/bodyParam}}
     
             // authentication setting, if any

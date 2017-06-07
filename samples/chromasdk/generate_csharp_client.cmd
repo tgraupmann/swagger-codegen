@@ -22,48 +22,17 @@ SET APINAME=ChromaApi
 call:genFunc
 
 
-REM Generate Custom API to workaround fields with multiple types
-
-REM SET OUT_GEN=csharp
-REM SET OUT_NAME=custom_chromasdk_%OUT_GEN%
-REM SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger_custom.yaml
-REM SET PACKAGE=CustomChromaPackage
-REM SET NAMESPACE=CustomChromaSDK
-REM SET MODEL=%PACKAGE%.Model
-REM call:genFunc
-
-
 REM Generate Razer endpoint
 
 SET OUT_GEN=csharp
 SET OUT_NAME=razer_%OUT_GEN%
 SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger_razer.yaml
-SET PACKAGE=RazerPackage
+SET PACKAGE=ChromaPackage
 SET NAMESPACE=RazerSDK
 SET MODEL=%PACKAGE%.Model
 SET LEVEL=2
 SET APINAME=RazerApi
 call:genFunc
-
-
-SET OUT_GEN=csharp
-SET OUT_NAME=razer_delete_%OUT_GEN%
-SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger_delete.yaml
-SET PACKAGE=RazerDeletePackage
-SET NAMESPACE=RazerSDKDelete
-SET MODEL=%PACKAGE%.Model
-SET APINAME=RazerDeleteApi
-SET LEVEL=3
-call:genFunc
-
-
-REM SET OUT_GEN=CsharpDotNet2
-REM SET OUT_NAME=chromasdk_%OUT_GEN%
-REM SET OUT_URL=https://raw.githubusercontent.com/tgraupmann/ChromaSwaggerDefinition/master/api/swagger/swagger.yaml
-REM SET PACKAGE=ChromaPackage
-REM SET NAMESPACE=ChromaSDK
-REM SET MODEL=%PACKAGE%.Model
-REM call:genFunc
 
 
 ECHO Clients Generated [DONE]
