@@ -56,7 +56,7 @@
             // to ensure "{{name}}" is required (not null)
             if ({{name}} == null)
             {
-                throw new InvalidDataException("{{name}} is a required property for {{classname}} and cannot be null");
+                throw new Exception("{{name}} is a required property for {{classname}} and cannot be null");
             }
             else
             {
